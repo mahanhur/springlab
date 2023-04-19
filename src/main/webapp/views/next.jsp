@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-  <h1>Here is the Next Page</h1>
+    <h1>Here is the Next Page</h1>
+    <h2>${mydata}</h2>
+    <img src="/img/img01.jpg">
 </body>
 </html>
