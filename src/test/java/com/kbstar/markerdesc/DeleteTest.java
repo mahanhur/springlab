@@ -1,5 +1,6 @@
-package com.kbstar.marker;
+package com.kbstar.markerdesc;
 
+import com.kbstar.service.MarkerDescService;
 import com.kbstar.service.MarkerService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -10,12 +11,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class DeleteTest {
     @Autowired
-    MarkerService service;
+    MarkerDescService service;
 
     @Test
     void contextLoads() throws Exception {
         try {
-            service.remove(110);
+            service.remove(13);
             log.info("삭제 정상");
         } catch (Exception e) {
             log.info("삭제 에러..");

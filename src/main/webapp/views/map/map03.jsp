@@ -14,15 +14,16 @@
     init: function () {
       this.display();
       $('#s_btn').click(function(){
-        map03.go(37.572209, 126.976814, 's');
+        map03.go(37.640446, 127.014702, 's');
       });
       $('#b_btn').click(function(){
-        map03.go(35.157439, 129.059139, 'b');
+        map03.go(35.1798456, 129.0705432,'b');
       });
       $('#j_btn').click(function(){
-        map03.go(33.361666, 126.529166, 'j');
+        map03.go(33.4999002, 126.5341787, 'j');
       });
     },
+
     display: function() {
       let mapContainer = document.querySelector('#map03 > #map');
       let mapOption = {
@@ -44,12 +45,23 @@
       marker.setMap(map);
     },
     go: function(lat, lng, loc) {
-      // 이동할 위도 경도 위치를 생성합니다
-      var moveLatLon = new kakao.maps.LatLng(lat, lng);
 
-      // 지도 중심을 부드럽게 이동시킵니다
-      // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-      map.panTo(moveLatLon);
+      let mapContainer = document.querySelector('#map03 > #map');
+      let mapOption = {
+        center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
+        level: 4 // 지도의 확대 레벨
+      };
+
+
+      //지도생성
+      map = new kakao.maps.Map(mapContainer, mapOption);
+
+      // // 이동할 위도 경도 위치를 생성합니다
+      // var moveLatLon = new kakao.maps.LatLng(lat, lng);
+      //
+      // // 지도 중심을 부드럽게 이동시킵니다
+      // // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+      // map.panTo(moveLatLon);
 
       var markerPosition  = new kakao.maps.LatLng(lat, lng);
       var marker = new kakao.maps.Marker({
@@ -83,7 +95,7 @@
         });
         // infoWindow
         var iwContent = '<h2>'+positions[i].title+'</h2>';
-        iwContent += '<img src="/img/'+positions[i].img+'" style="width:50px">';
+        iwContent += '<img src="/uimg/'+positions[i].img+'" style="width:50px">';
 
         var infowindow = new kakao.maps.InfoWindow({
           position : markerPosition,
@@ -92,7 +104,7 @@
 
         kakao.maps.event.addListener(marker, 'mouseover', mouseoverListener(marker, infowindow));
         kakao.maps.event.addListener(marker, 'mouseout', mouseoutListener(marker, infowindow));
-        kakao.maps.event.addListener(marker, 'click', mouseclickListener(positions[i].target));
+        kakao.maps.event.addListener(marker, 'click', mouseclickListener(positions[i].id));
 
 
         function mouseoverListener(marker, infowindow) {
@@ -107,7 +119,7 @@
         }
         function mouseclickListener(target) {
           return function(){
-            location.href = target;
+            location.href = '/map/detail?id='+target;
           };
         }
 

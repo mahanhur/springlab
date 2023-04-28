@@ -4,14 +4,60 @@
 <script>
     let rgs_form = {
     init:() => {
+      $('#rgs_btn').attr('disabled',true);
       $("#rgs_btn").click( () => {
         rgs_form.send();
       });
+      $('#name').keyup( () => {
+        let id = $('#id').val();
+        let pwd = $('#pwd').val();
+        let name = $('#name').val();
+
+        if(id!=''&&pwd!=''&&name!=''){
+          $('#rgs_btn').attr('disabled', false);
+        };
+      });
+      $("#id").keyup( () => {
+        let txt_id = $('#id').val();
+        if(txt_id.length<=3) {
+          return;
+        } else {
+          $.ajax({
+            url:'/checkid',
+            data:{'id':txt_id},
+            success: function(result){
+              if(result == 0){
+                $('#check_id').text('사용 가능한 ID입니다');
+                $('#pwd').focus();
+              } else {
+                $('#check_id').text('사용 불가능한 ID입니다');
+              }
+            },
+          });
+        }
+      })
     },
     send:() => {
+      let id = $('#id').val();
+      let pwd = $('#pwd').val();
+      let name = $('#name').val();
+
+      if(id.length<=3) {
+        $('#check_id').text('4자리 이상이어야 합니다.');
+        $('#id').focus();
+        return;
+      }
+      if(pwd == ''){
+        $('#pwd').focus();
+        return;
+      }
+      if(name == ''){
+        $('#name').focus();
+        return;
+      }
       $("#rgs_form").attr({
         'action':'/rgsimpl',
-        'method':'get'
+        'method':'post'
       });
       $("#rgs_form").submit();
     }
@@ -38,6 +84,9 @@
       <label class="control-label col-sm-2" for="id">ID:</label>
       <div class="col-sm-10">
         <input type="id" class="form-control" name="id" id="id" placeholder="Enter ID">
+      </div>
+      <div class="col-sm-10">
+        <span id="check_id" class="bg-danger"></span>
       </div>
     </div>
     <div class="form-group">

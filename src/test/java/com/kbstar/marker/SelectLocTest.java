@@ -8,17 +8,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @Slf4j
 @SpringBootTest
-class DeleteTest {
+class SelectLocTest {
+
     @Autowired
     MarkerService service;
-
     @Test
     void contextLoads() throws Exception {
         try {
-            service.remove(110);
-            log.info("삭제 정상");
+            service.getLoc("s");
+            log.info("셀렉 정상");
         } catch (Exception e) {
-            log.info("삭제 에러..");
+            log.info("셀렉 에러..");
         }
     }
 }

@@ -1,16 +1,31 @@
 package com.kbstar.controller;
 
+import com.kbstar.dto.Marker;
+import com.kbstar.dto.MarkerDesc;
+import com.kbstar.service.MarkerDescService;
+import com.kbstar.service.MarkerService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
+@Slf4j
 @Controller
 @RequestMapping("/map")
 public class MapController {
 
-    Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
+    @Autowired
+    MarkerService markerService;
+    @Autowired
+    MarkerDescService markerDescService;
+
+//    Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
     String dir = "map/";
     @RequestMapping("")
     public String main(Model model) {
@@ -48,5 +63,23 @@ public class MapController {
         model.addAttribute("left", dir+"left");
         return "index";
     }
+
+    @RequestMapping("/detail")
+    public String map05(Model model, int id) throws Exception {
+        Marker marker = null;
+        List<MarkerDesc> markerDesc = null;
+        try {
+            marker = markerService.get(id);
+            markerDesc = markerDescService.getMarkerDesc(id);
+        } catch (Exception e) {
+            throw new Exception("시스템 장애");
+        }
+        model.addAttribute("gmarker", marker);
+        model.addAttribute("markerd", markerDesc);
+        model.addAttribute("center", dir+"detail");
+        model.addAttribute("left", dir+"left");
+        return "index";
+    }
+
 
 }

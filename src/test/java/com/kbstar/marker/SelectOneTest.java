@@ -15,7 +15,7 @@ class SelectOneTest {
     @Test
     void contextLoads() throws Exception {
         try {
-            service.get("102");
+            service.get(102);
             log.info("셀렉 정상");
         } catch (Exception e) {
             log.info("셀렉 에러..");

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class MarkerService implements KBService<String, Marker> {
+public class MarkerService implements KBService<Integer, Marker> {
     /**
      * 등록 및 가입 진행
      * argument : Object
@@ -30,7 +30,7 @@ public class MarkerService implements KBService<String, Marker> {
     }
 
     @Override
-    public void remove(String s) throws Exception {
+    public void remove(Integer s) throws Exception {
         mapper.delete(s);
     }
 
@@ -40,12 +40,16 @@ public class MarkerService implements KBService<String, Marker> {
     }
 
     @Override
-    public Marker get(String s) throws Exception {
+    public Marker get(Integer s) throws Exception {
         return mapper.select(s);
     }
 
     @Override
     public List<Marker> getall() throws Exception {
         return mapper.selectall();
+    }
+
+    public List<Marker> getLoc(String loc) throws Exception {
+        return mapper.getloc(loc);
     }
 }
