@@ -10,6 +10,9 @@
     <select id="selectall" resultType="Cust">
         SELECT * FROM cust
     </select>
+    <select id="getpage" resultType="Cust">
+        SELECT * FROM cust
+    </select>
     <insert id="insert" parameterType="Cust">
         INSERT INTO cust VALUES (#{id},#{pwd},#{name})
     </insert>

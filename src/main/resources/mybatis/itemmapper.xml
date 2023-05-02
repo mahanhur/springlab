@@ -11,6 +11,9 @@
     <select id="selectall" resultType="item">
         SELECT * FROM item
     </select>
+    <select id="getpage" resultType="item">
+        SELECT * FROM item order by id desc
+    </select>
     <insert id="insert" parameterType="item">
         INSERT INTO item VALUES (#{id},#{price},#{imgname},SYSDATE)
     </insert>

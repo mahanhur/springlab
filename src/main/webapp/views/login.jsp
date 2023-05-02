@@ -2,7 +2,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script>
+    let login_form = {
+        init:function() {
+            $("#login_btn").click( () => {
+                login_form.send();
+            });
+        },
+        send:function() {
+            $("#login_form").attr({
+                'action':'/loginimpl',
+                'method':'post'
 
+            });
+            $("#login_form").submit();
+        }
+    };
+
+
+    $(function() {
+        login_form.init();
+    });
 </script>
 
 <div class="col-sm-8 text-left">

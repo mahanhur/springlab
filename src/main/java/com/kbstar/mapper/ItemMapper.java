@@ -1,5 +1,6 @@
 package com.kbstar.mapper;
 
+import com.github.pagehelper.Page;
 import com.kbstar.dto.Adm;
 import com.kbstar.dto.Item;
 import com.kbstar.frame.KBMapper;
@@ -12,5 +13,5 @@ import org.springframework.stereotype.Repository;
 
 public interface ItemMapper extends KBMapper<Integer, Item> {
 
-
+    Page<Item> getpage() throws Exception;
 }
