@@ -15,7 +15,7 @@ class SelectIdTest {
     @Test
     void contextLoads() {
         try {
-            service.getMyCart("id02");
+            service.getMyCart("id06");
         } catch (Exception e) {
             log.info("select one error-----------------------------");
             e.printStackTrace();

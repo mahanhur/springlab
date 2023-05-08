@@ -27,7 +27,11 @@ public class Cart {
         this.rdate = rdate;
     }
 
-
+    public Cart(String cust_id, int item_id, int cnt) {
+        this.cust_id = cust_id;
+        this.item_id = item_id;
+        this.cnt = cnt;
+    }
 
     private String cust_name;
     private String item_name;

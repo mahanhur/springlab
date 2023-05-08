@@ -23,6 +23,10 @@
     <script src="https://code.highcharts.com/highcharts-3d.js"></script>
     <script src="https://code.highcharts.com/modules/bullet.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
+    <!--Web Socket-->
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
     <style>
         /* Remove the navbar's default margin-bottom and rounded borders */
         .navbar {
@@ -95,6 +99,9 @@
                 <c:otherwise>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right ">
+                <li><a href="/item/allcart?id=${logincust.id}"><span class="glyphicon glyphicon-shopping-cart"></span>CART</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right ">
                 <li><a href="/custinfo?id=${logincust.id}">${logincust.name}님( ${logincust.id} )</a></li>

@@ -15,7 +15,7 @@ class DeleteTest {
     @Test
     void contextLoads() {
         try {
-            service.remove(120);
+            service.remove(101);
             log.info("remove OK--------------------------------");
             service.getall();
         } catch (Exception e) {
