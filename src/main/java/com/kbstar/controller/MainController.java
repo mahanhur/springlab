@@ -5,6 +5,7 @@ import com.kbstar.service.CustService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +16,13 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class MainController {
 
-
+    @Value("${adminserver}")
+    String adminServer;
     @Autowired
     private BCryptPasswordEncoder encoder;
     @Autowired
     CustService custService;
-    Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
+//    Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     @RequestMapping("/")
     public String main() {
@@ -62,7 +64,7 @@ public class MainController {
     }
     @RequestMapping("/loginimpl")
     public String loginimpl(Model model, String id, String pwd, HttpSession session) throws Exception {
-        logger.info("---------------" + id + "  " + pwd);
+//        logger.info("---------------" + id + "  " + pwd);
         Cust cust = null;
         String nextPage = "loginfail";
         try {
@@ -110,6 +112,7 @@ public class MainController {
     }
     @RequestMapping("/websocket")
     public String websocket(Model model) {
+        model.addAttribute("adminserver", adminServer);
         model.addAttribute("center", "websocket");
         return "index";
     }
