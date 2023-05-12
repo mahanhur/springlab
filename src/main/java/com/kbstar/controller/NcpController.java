@@ -4,6 +4,7 @@ import com.kbstar.dto.Ncp;
 import com.kbstar.utility.CFRCelebrityUtil;
 import com.kbstar.utility.CFRFaceUtil;
 import com.kbstar.utility.FileUploadUtil;
+import com.kbstar.utility.OCRUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -122,6 +123,45 @@ public class NcpController {
         model.addAttribute("result", map);
 //        model.addAttribute("confidence", confidence);
         model.addAttribute("center", "pic");
+        return "index";
+    }
+    @RequestMapping("/ocr1impl")
+    public String ocr1impl(Model model, Ncp ncp) throws Exception {
+
+        MultipartFile mf = ncp.getImg();
+        FileUploadUtil.saveFile(mf, imgpath);
+
+        String imgname = mf.getOriginalFilename();
+
+        JSONObject jo = null;
+        Map map = null;
+
+        jo = (JSONObject) OCRUtil.getResult(imgpath, imgname);
+        map = OCRUtil.getData(jo);
+
+        model.addAttribute("result", map);
+//        model.addAttribute("confidence", confidence);
+        model.addAttribute("center", "ocr1");
+        return "index";
+    }
+
+    @RequestMapping("/ocr2impl")
+    public String ocr2impl(Model model, Ncp ncp) throws Exception {
+
+        MultipartFile mf = ncp.getImg();
+        FileUploadUtil.saveFile(mf, imgpath);
+
+        String imgname = mf.getOriginalFilename();
+
+        JSONObject jo = null;
+        Map map = null;
+
+        jo = (JSONObject) OCRUtil.getResult(imgpath, imgname);
+        map = OCRUtil.getData(jo);
+
+        model.addAttribute("result", map);
+//        model.addAttribute("confidence", confidence);
+        model.addAttribute("center", "ocr2");
         return "index";
     }
 
