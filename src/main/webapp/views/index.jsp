@@ -108,7 +108,7 @@
                 document.body.appendChild(scrollBtn);
                 scrollBtn.classList.add("show");
                 scrollBtn.addEventListener("click", function(){
-                    location.href='/login';
+                    location.href='/chatbot';
                 });
                 const scrollBtn2 = document.createElement("button");
                 scrollBtn2.innerHTML = "1:1";
@@ -116,7 +116,7 @@
                 document.body.appendChild(scrollBtn2);
                 scrollBtn2.classList.add("show");
                 scrollBtn2.addEventListener("click", function(){
-                    location.href='/login';
+                    location.href='/callcenter';
                 });
             }
         };

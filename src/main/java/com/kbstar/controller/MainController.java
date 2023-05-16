@@ -143,4 +143,22 @@ public class MainController {
         model.addAttribute("center", "ocr2");
         return "index";
     }
+    @RequestMapping("/chatbot")
+    public String chatbot(Model model, HttpSession session) {
+        if(session.getAttribute("logincust") == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("adminserver", adminServer);
+        model.addAttribute("center", "chatbot");
+        return "index";
+    }
+    @RequestMapping("/callcenter")
+    public String callcenter(Model model, HttpSession session) {
+        if(session.getAttribute("logincust") == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("adminserver", adminServer);
+        model.addAttribute("center", "callcenter");
+        return "index";
+    }
 }
