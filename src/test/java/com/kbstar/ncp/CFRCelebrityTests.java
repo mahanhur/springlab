@@ -14,11 +14,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 class CFRCelebrityTests {
     @Value("${uploadimgdir}")
     String imgpath;
+    @Autowired
+    CFRCelebrityUtil celebrityUtil;
 
     @Test
     void contextLoads() throws Exception {
         String imgname = "ma.jpg";
-        JSONObject result = (JSONObject) CFRCelebrityUtil.getResult(imgpath,imgname);
+        JSONObject result = (JSONObject) celebrityUtil.getResult(imgpath,imgname);
         log.info(result.toJSONString());
     }
 

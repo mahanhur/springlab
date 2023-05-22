@@ -3,6 +3,8 @@ package com.kbstar.utility;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -11,13 +13,19 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Calendar;
 
+@Component
 public class CFRCelebrityUtil {
-    public static Object getResult(String imgpath, String imgname) throws Exception{
+    @Value("${cfr_id}")
+    String cfr_id;
+    @Value("${cfr_key}")
+    String cfr_key;
+
+    public Object getResult(String imgpath, String imgname) throws Exception{
         String result = null;
 
         StringBuffer reqStr = new StringBuffer();
-        String clientId = "vfobqbyipt";//애플리케이션 클라이언트 아이디값";
-        String clientSecret = "In0GjgZ5Lxa8AWEfwQ92ScaSI6pYBqtAlKMCJBTn";//애플리케이션 클라이언트 시크릿값";
+        String clientId = cfr_id;//애플리케이션 클라이언트 아이디값";
+        String clientSecret = cfr_key;//애플리케이션 클라이언트 시크릿값";
 
         try {
             String paramName = "image"; // 파라미터명은 image로 지정

@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,10 @@ public class NcpController {
 
     @Value("${uploadimgdir}")
     String imgpath;
+    @Autowired
+    CFRCelebrityUtil celebrityUtil;
+    @Autowired
+    CFRFaceUtil faceUtil;
 
     @RequestMapping("/cfr1impl")
     public String cfr1impl(Model model, Ncp ncp) throws Exception {
@@ -36,7 +41,7 @@ public class NcpController {
 
         //NCP에 요청한다
 
-        JSONObject result = (JSONObject) CFRCelebrityUtil.getResult(imgpath,imgname);
+        JSONObject result = (JSONObject) celebrityUtil.getResult(imgpath,imgname);
 
         //결과를 깐다
         JSONArray faces = (JSONArray) result.get("faces");
@@ -61,7 +66,7 @@ public class NcpController {
         String imgname = mf.getOriginalFilename();
 
         //NCP에 요청한다
-        JSONObject result = (JSONObject) CFRFaceUtil.getResult(imgpath,imgname);
+        JSONObject result = (JSONObject) faceUtil.getResult(imgpath,imgname);
 
         //결과를 깐다
         JSONArray faces = (JSONArray) result.get("faces");
@@ -95,7 +100,7 @@ public class NcpController {
     public String mycfr(Model model, String imgname) throws Exception {
 
         //NCP에 요청한다
-        JSONObject result = (JSONObject) CFRFaceUtil.getResult(imgpath,imgname);
+        JSONObject result = (JSONObject) faceUtil.getResult(imgpath,imgname);
 
         //결과를 깐다
         JSONArray faces = (JSONArray) result.get("faces");
